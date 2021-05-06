@@ -1,0 +1,354 @@
+软件
+------
+Ubuntu目录结构：
+1、
+Ubuntu目录结构为 唯一根节点"/"开始的树状结构。
+cd/cd ~：进入当前user的home目录。
+cd /：进入根目录。
+cd -：进入上一个所在目录。
+cd .：进入当前目录。
+cd ..：进入上级目录。
+2、
+/bin：此目录中放置了所有用户能够执行的命令。
+/sbin：此目录中放置了一般是只有系统管理员有才能执行的命令。
+/boot：系统的内核所在地，也是启动分区。
+/dev：此目录中保存了所有设备文件，例如，使用的分区：/dev/hda\1，/dev/cdrom 等。
+/etc：此目录非常重要，绝大多数系统和相关服务的配置文件都保存在这里，这个目录的内容一般只能由管理员进行修改。像密码文件、设置网卡信息、环境变量的设置等都在此目录中。此目录的 rcn.d 目录中存放不同启动级别所启动的服务，network 目录放置网卡的配置信息等。
+/home：此目录是所有普通用户的宿主目录所在地，在一般情况下，如果想要对用户进行磁盘限额功能，最好将此目录单独分区。
+/lib+/lib64：包含了系统的函数库文件。
+/media：主要用于挂载多媒体设备，例如U盘、光驱。
+/mnt：此目录主要是作为文件系统挂载点使用。
+/opt：作为可选文件和程序的存放目录，否则将无法引导计算机进入操作系统。
+/proc：这是一个虚拟目录，它是内存的映射，包括系统信息和进程信息。
+/root：系统管理员的宿主目录。
+/srv：存储系统提供的服务数据。
+/sys：系统设备和文件层次结构，并向用户程序提供详细的内核数据信息。
+/tmp：包含了临时的文件。
+/usr：此目录包含了用户很多的命令、说明文件、程序库等，类似于windows的program files目录。此目录下有很多重要的目录，常见的有：/usr/local 这个目录包含管理员自己安装的程序；/usr/share 包含文件的帮助文件；/usr/bin 和/usr/sbin 包含了所有的命令。
+/var：此目录存放一些不断扩充的东西，包括日志文件、计划性任务和邮件等内容。
+
+Ubuntu快捷键：
+Super+a: 所有应用列表
+Alt+`：同一应用内切换
+--
+Ctrl+Alt+t: 调出终端
+Alt+F2: 执行单行命令
+Tab: 终端中自动补全
+Ctrl+c: 终端中停止命令
+Ctrl+Shift+c: 终端中复制
+Ctrl+Shift+v: 终端中粘贴
+Ctrl+Shift+PageUp: 终端上翻页
+Ctrl+Shift+PageDown: 终端下翻页
+Ctrl+Shift+↑: 终端上看一行
+Ctrl+Shift+↓: 终端下看一行
+--
+Ctrl+l: Files(资源管理器)中显示当前路径
+Ctrl+h: Files中显示/隐藏 隐藏文件
+Ctrl+i: Files中显示属性
+
+apt包（软件）管理：
+1、sudo apt（apt-get） install XXX后计算机做了什么：
+①扫描本地存放的软件包列表，找到最新版本的软件包。
+②进行软件包依赖关系检查，找到支持该软件正常运行的所有软件包。
+③从软件源所指的镜像站点中，下载相关软件包。
+④解压软件包，并自动完成应用程序的安装和配置。
+2、更新为国内软件源：
+https://blog.csdn.net/zhangjiahao14/article/details/80554616
+3、使用指南：
+https://www.sysgeek.cn/apt-vs-apt-get/
+https://wiki.ubuntu.org.cn/%E5%8C%85%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E6%8C%87%E5%8D%97
+
+Ubuntu软件安装：
+1、sudo apt install XXX
+2、在Ubuntu Software中选择安装。
+3、下载.deb文件，双击安装 或 ①sudo dpkg -i XXX.deb。②报依赖关系错误时sudo apt-get install -f再dpkg。
+4、从PPA源下载软件：
+很多软件因各种原因不能进入官方Ubuntu软件仓库。为方便Ubuntu用户使用，launchpad.net提供了PPA(Personal Package Archives)，允许用户建立自己的软件仓库(软件包集合)，自由地上传、下载软件。PPA也被用来存放一些打算进入Ubuntu官方仓库的软件和某些软件新版本的测试版。
+①去PPA官网 https://launchpad.net/ubuntu/+ppas 找有相应软件的PPA源：ppa:user/ppa-name
+②添加PPA源：sudo add-apt-repository ppa:user/ppa-name
+③更新：sudo apt-get update
+④安装：sudo apt-get install ppa-name
+⑤不想留尾巴可以删除PPA源：sudo add-apt-repository -r ppa:user/ppa-name
+5、下载源码编译：
+当开发者只提供程序源码 或 无root权限安装软件 时，就只能下载软件源码进行编译。
+配置命令    ./configure 
+编译命令    make
+安装命令    make install
+https://blog.csdn.net/u012501054/article/details/77880139
+Ubuntu软件更新：
+sudo apt update && sudo apt upgrade（获取更新信息&&更新软件包）
+Ubuntu软件删除：
+sudo apt purge XXX && sudo apt autoremove（删除软件包及配置文件&&自动删除不需要（不被引用）的包）
+
+一些需要安装的（例如：显卡驱动、受限媒体编解码器等）：
+https://imcn.me/html/y2017/31576.html
+https://linuxconfig.org/how-to-install-the-nvidia-drivers-on-ubuntu-18-04-bionic-beaver-linux#h7-automatic-install-using-ppa-repository-to-install-nvidia-beta-drivers
+
+安装 Vim+搜狗输入法SogouPinyin+解压缩工具rar+下载工具aria2+办公WPS：
+1、https://jingyan.baidu.com/article/046a7b3efd165bf9c27fa915.html
+https://www.cnblogs.com/wi100sh/p/4938996.html
+2、https://blog.csdn.net/lupengCSDN/article/details/80279177
+3、https://github.com/tuntuntunwu/programming/blob/master/ubuntu/sum-cmd/compress
+4、https://github.com/tuntuntunwu/programming/blob/master/ubuntu/sum-cmd/aria2
+5、https://www.cnblogs.com/wkfvawl/p/11163549.html
+
+安装 Shadowsocks：
+1、下载：sudo apt install shadowsocks
+2、写配置文件：
+sudo vim /etc/shadowsocks.json
+内容如下：
+{
+    "server": "VPS（服务器）ip地址或域名",
+    "server_port": 端口号,
+    "local_address": "127.0.0.1",
+    "local_port": 1080,
+    "password": "密码",
+    "timeout": 600,
+    "method": "加密方式"
+}
+3、转为守护进程运行：
+sudo sslocal -c /etc/shadowsocks.json -d start
+4、配置“手动”系统代理→成功运行（全局模式）：
+“设置” → “网络” → “网络代理” → “手动”+“Socks主机：127.0.0.1 1080”
+5、下载PAC文件：
+sudo apt install python3-pip && 
+sudo pip3 install --upgrade pip && 
+sudo pip3 install genpac && 
+sudo pip3 install --upgrade genpac && 
+genpac --pac-proxy "SOCKS5 127.0.0.1:1080" --gfwlist-proxy="SOCKS5 127.0.0.1:1080" --gfwlist-url=https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt --output="autoproxy.pac"
+此时当前终端目录下便生成了autoproxy.pac文件
+6、配置“自动”系统代理→成功运行（PAC模式）：
+“设置” → “网络” → “网络代理” → “自动”+“URL: file:// + autoproxy.pac文件的绝对路径（比如:file:///home/xxx/autoproxy.pac）”
+7、设置开机自启：
+https://ywnz.com/linuxjc/3126.html 或者 自己写一个shell脚本放在目录/etc/profile.d/下，系统启动后会自动执行该目录下的所有脚本。
+
+Ubuntu桌面美化：
+1、使用Gnome Tweaks Tool美化：
+①安装Gnome Tweaks Tool：sudo apt install gnome-tweak-tool
+②安装Gnome Shell Extensions、dash-to-dock或dash-to-panel以及其他拓展：
+https://linux.cn/article-9447-1.html#3_1097
+③使用Tweaks开启美化之旅。
+④设置login背景图：https://www.jianshu.com/p/089bc15e47b3
+⑤修改当前主题的.css文件可以实现更细节的调整：
+https://www.deepin.org/2012/02/07/customize-gnome-shell-theme-1/
+⑥安装新字体：
+https://blog.csdn.net/bitcarmanlee/article/details/79729634
+2、例子：
+例1：https://blog.csdn.net/baidu_37973503/article/details/86777215
+例2：https://www.cnblogs.com/feipeng8848/p/8970556.html
+
+Ubuntu桌面快捷方式（软链接/硬链接）：
+https://www.jianshu.com/p/dde6a01c4094
+
+Ubuntu右键菜单：
+1、新建文件：
+参见 ~/Templates 中的说明
+2、任意命令：
+https://chubuntu.com/questions/3240/how-do-i-customize-the-context-menu-in-nautilus.html
+https://blog.csdn.net/bestbt/article/details/81221378
+
+ssh：
+1、ssh连接github：
+https://help.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh
+2、ssh连接linux系统服务器：
+https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-on-ubuntu-1804
+
+
+
+硬件
+------
+Ubuntu查看设备信息：
+1、软件（界面）方式：
+①在系统的Settings中便可获知计算机基本信息（概要）。
+②和Windows中设备管理器类似，使用软件hardinfo可方便的查看计算机的各种设备信息：sudo apt install hardinfo
+2、命令方式：
+①查看硬件(hardware&device)信息：
+https://github.com/tuntuntunwu/programming/blob/master/ubuntu/sum-cmd/hardinfo
+②查看驱动(driver)信息：
+https://unix.stackexchange.com/questions/41817/linux-how-to-find-the-device-driver-used-for-a-device
+https://ubuntuforums.org/showthread.php?t=933054&p=5885907#post5885907
+③查看操作系统(OS)信息：
+https://www.qiancheng.me/post/coding/show-linux-issue-version
+
+Ubuntu设置无线网卡：
+买无线网卡一定买能与linux适配的网卡啊！没说适配的很难找到相应驱动的啊！
+
+Ubuntu清理磁盘空间：
+https://www.sysgeek.cn/ubuntu-free-up-space/
+https://www.jianshu.com/p/3d8ae0f41864
+
+
+
+命令
+------
+必须更多地了解linux：
+https://www.runoob.com/linux/linux-tutorial.html
+
+'<'、'|'、'>'、'&&'、'||'、';'：
+<：输入重定向，'<'后面跟的内容将作为程序的输入（取代键盘）。
+|：管道命令，'|'左边程序的输出 作为'|'右边程序的输入。
+>：输出重定向，程序的输出将存入'>'后的文件（取代显示器）。
+&&：用'&&'连接的命令（程序）将从前到后依次执行，一旦执行失败，将不再执行后续命令（程序）。
+||：用'||'连接的命令（程序）将从前到后依次执行，一旦执行成功，将不再执行后续命令（程序）。
+;：';'只是声明了命令（程序）依次执行，其不管成功失败。
+更多重定向参见https://www.runoob.com/linux/linux-shell-io-redirections.html
+
+linux常用命令：
+https://github.com/tuntuntunwu/programming/blob/master/ubuntu/sum-cmd/common
+https://www.runoob.com/linux/linux-command-manual.html
+
+shell脚本：
+1、
+（笔记也要看）https://www.runoob.com/linux/linux-shell.html
+https://www.cnblogs.com/jingmoxukong/p/7867397.html
+2、补充：
+https://my.oschina.net/leejun2005/blog/368777
+https://github.com/tuntuntunwu/programming/blob/master/ubuntu/shell_notes.md
+http://c.biancheng.net/shell/
+
+
+
+macOS
+------
+简介：
+1、
+macOS的内核(XNU)意为“XNU is Not Unix”，其与基于Unix与Linux开发的操作系统是不同的。但其整体结构与操作形式（目录文件结构、命令等）与Unix/Linux系又十分的“一致”，可以按照使用Unix/Linux系的方法、思想使用它。同时，为了更好地服务普通用户，macOS提供了更多良好的“界面”与便捷的操作（强制退出、后台进程、软硬件信息、软件安装操作等），保证普通用户可以像使用Windows一样地使用macOS。简而言之，你可以视macOS为Unix/Linux与Windows的选择性结合。
+2、
+https://help.apple.com/macOS/mojave/macbook-pro/?lang=zh-hans
+https://help.apple.com/macOS/mojave/mac-basics/?lang=zh-hans
+3、
+熟悉并“调教”任一设备（操作系统），都可按照以下步骤进行：
+preferences → 主要的applications与其preferences → 所有的applications → 使用trick
+
+Mac屏幕清理：
+https://support.apple.com/zh-cn/HT204172
+
+触控板手势：
+参见 “苹果菜单” → “系统偏好设置” → “触控板”
+
+macOS快捷键：
+1、键位对应：
+在macOS中，command对应Ctrl，option对应Alt；在具体的application中，control对应Ctrl，option对应Alt，command对应Windows/Super。
+使用fn键调出F1~F12
+delete对应Backspace，fn+delete对应Delete
+fn+I对应Insert
+fn+↑对应PageUp，fn+下对应PageDown，fn+←对应Home，fn+→对应End
+2、系统：
+control+space: 切换输入法
+command+option+esc: 强制退出
+fn+fn: 听写
+command+space: 聚焦
+command+shift+5: 截屏
+--
+control+command+F: 进入/退出全屏幕
+return: 文件重命名
+command+N: 打开当前程序的另一个窗口
+command+W: 关闭当前tab/窗口
+command+I: 显示简介
+command+option+C: 复制绝对路径
+command+shift+G: Finder中前往指定路径
+--
+command+G: 查找下一个
+command+shift+G: 查找上一个
+command+shift+Z: Redo
+3、safari：
+safari的快捷键与Chrome如出一辙，不同之处也可通过自定义快捷键使之一致。
+command+R: 刷新
+command+Z: 打开最后关闭的tab
+command+shift+←/→: 切换tab
+4、安装使用cheatsheet软件，长按command可快速查看当前窗口所有可用快捷键。
+5、系统启动：
+https://support.apple.com/zh-cn/HT201255
+
+Homebrew包管理：
+1、使用指南：
+https://brew.sh
+https://www.jianshu.com/p/bca8fc1ff3f0
+https://sspai.com/post/56009
+2、更新为国内软件源：
+https://mirrors.tuna.tsinghua.edu.cn/help/homebrew/
+3、brew cask：
+https://github.com/Homebrew/homebrew-cask/blob/master/USAGE.md
+
+macOS软件安装：
+1、在Mac App Store中选择安装。（尽量在App Store中下载安装，正版，而且便于更新、卸载）
+2、brew install XXX 或 brew cask install XXX
+3、下载.dwg、.pkg文件，双击装载安装。下载.app文件，直接拖进应用程序文件夹即可。
+macOS软件更新：
+1、对于App Store中安装的软件，在App Store中直接更新。
+2、对于brew和brew cask安装的软件，brew update && brew (cask) upgrade。
+3、对于.dwg、.pkg、.app安装的软件，在各软件内部手动更新。
+macOS软件卸载：
+1、对于App Store中安装的软件，直接将应用程序.app移到废纸篓即可。
+1、对于brew和brew cask安装的软件，brew (cask) uninstall XXX && brew cleanup。
+2、对于.dwg、.pkg、.app安装的软件，参见https://zhuanlan.zhihu.com/p/38454290、https://blog.csdn.net/li_haijiang/article/details/88989169。
+
+一些需要安装的：
+1、brew install unrar
+2、Microsoft Remote Desktop：
+https://zhuanlan.zhihu.com/p/34202380
+ttps://macadmins.software
+3、Office：
+https://www.xxmac.com/office
+4、软件推荐：
+https://github.com/jaywcjlove/awesome-mac/blob/master/README-zh.md
+
+macOS安装字体：
+1、https://support.apple.com/zh-cn/HT201749
+2、https://wilsonmar.github.io/fonts-on-mac-os/
+
+macOS快捷键打开应用程序：
+1、访达：
+快捷键开启访达可在 “苹果菜单” → “系统偏好设置” → “键盘” → “快捷键” → “聚焦” 中直接修改设置。
+2、终端或其他系统级程序：
+https://blog.csdn.net/myth13141314/article/details/74171006
+3、应用程序：
+https://www.jianshu.com/p/831576925824
+
+macOS右键菜单：
+1、新建文件：
+使用软件New File Menu。
+2、任意命令：
+https://www.jianshu.com/p/e2f897933c56
+
+macOS开机自启动：
+https://www.zhihu.com/question/28268529/answer/355905456
+https://xuebin.me/posts/c2d2b2bf.html
+
+macOS查看设备信息：
+“苹果”菜单中的“关于本机” 及 其中的“系统报告” 详尽地列出了各种设备信息。
+
+macOS清理磁盘空间：
+1、使用软件Dr. Cleaner 或 腾讯柠檬清理。
+2、手工清理：
+https://support.apple.com/zh-cn/HT206996
+https://www.zhihu.com/question/23240324/answer/135603147
+https://www.zhihu.com/question/23240324/answer/114371038
+http://www.mycleanmymac.com/changjianwenti/mac-cipan-qingli.html
+
+
+
+Q&A
+------
+
+Q: The root filesystem on /dev/sda1 requires a manual fsck
+A: (initramfs) fsck /dev/sda1
+
+Q: Ubuntu开机启动前后、登录部分出现问题怎么解决？
+A: 进入Ubuntu安全模式：启动BIOS时长按Shift，进入grub → “Advanced options for Ubuntu” → “recovery mode” → 根据具体问题百度到的答案，在命令行里操作解决。
+
+Q: System program problem detected
+A: 将/etc/default/apport文件中的enabled=1改为enabled=0。
+
+Q: Failure to download extra data files
+A: sudo apt install --reinstall your_package
+
+Q: Ubuntu升级、更新后无声音？
+A: killall pulseaudio; rm -r ~/.config/pulse/*
+
+Q: safari无法使用阿里旺旺？
+A: https://www.crifan.com/mac_safari_chrome_how_to_open_aliwangwang_chat_window/
+
+Q: safari限制第三方Cookies？
+A: https://jingyan.baidu.com/article/636f38bbeb925d96b9461066.html
+

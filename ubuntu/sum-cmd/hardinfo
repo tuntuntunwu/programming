@@ -1,0 +1,75 @@
+Devices:
+
+# 查看CPU
+cat /proc/cpuinfo | grep model\ name
+lscpu
+
+# 查看内存
+cat /proc/meminfo
+lsmem  # 仅显示是否online
+
+# 查看接入PCI总线的设备（包括显卡、声卡、网卡）
+# 该命令不依赖于系统是否安装有硬件对应的驱动模块，因而结合lspci和/sys可以查询硬件使用的驱动信息
+# https://unix.stackexchange.com/questions/41817/linux-how-to-find-the-device-driver-used-for-a-device
+lspci
+
+# 查看接入USB的设备
+lsusb
+
+# 查看加载的内核模块
+lsmod
+
+# 查看硬盘
+df -h
+hdparm -I /dev/sda  # 使用hdparm工具可获取、设置硬盘参数
+
+# 查看输入设备（包括键盘、鼠标）
+cat /proc/bus/input/devices
+
+# dmidecode通过读取DMI表中数据来提供几乎所有的硬件信息（包括BIOS、Product、Base Board、Chassis）
+# 类似命令还有lshw
+sudo dmidecode
+sudo lshw
+
+# dmesg显示内核环缓冲区(kernel ring buffer)信息，比如会有一些系统启动时的信息
+# 其并非专门用来查看硬件信息的，但通过grep可以获取到想要的硬件信息
+sudo dmesg | grep xx
+
+
+
+Computer(Resource):
+
+# 使用sysstat工具进行性能监控（包括CPU使用率、硬盘、网络吞吐等等）
+# 需先安装sysstat: sudo apt install sysstat
+https://github.com/sysstat/sysstat
+
+# 查看进程
+top  # 实时进程状态
+ps -af
+
+# 查看用户
+w  # 查看活动用户
+who  # 查看当前用户
+id xx用户名  # 查看指定用户信息
+last  # 查看用户登录日志
+cat /etc/passwd  # 所有用户
+cat /etc/group  # 所有组
+
+# 查看网络
+# 需先安装net-tools: sudo apt install net-tools
+ifconfig  # 查看网络接口
+sudo iptables -L  # 查看防火墙
+sudo netstat -r  # 查看路由表
+sudo netstat -i == ifconfig  # 查看网络接口
+sudo netstat -g  # 查看组播成员
+sudo netstat -M  # 查看伪装链接
+sudo netstat -s  # 查看网络统计信息
+# n:显示ip，p:显示链接所属的程序，a:显示所有链接，l:仅显示监听的链接，t:显示tcp链接，u:显示udp链接
+sudo netstat -nplt  # 查看监听的tcp链接
+
+# 其他
+hostname  # 计算机名
+uptime  # 系统运行时间、用户数、负载
+cat /proc/dma  # 主机DMA通道信息
+cat /proc/interrupts  # 主机中断信息
+cat /proc/ioports  # 主机I/O端口号信息

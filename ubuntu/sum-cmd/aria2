@@ -1,0 +1,17 @@
+# Aria2 是轻量级、多协议、多源的命令行下载工具，支持 HTTP/HTTPS, FTP, SFTP, bt 以及 Metalink。
+
+# 安装
+sudo apt install aria2
+
+# 使用
+aria2c http://xx.com/xx
+aria2c xx.torrent
+aria2c 'magnet:?xt=urn:btih:xx'
+aria2c xx.metalink
+
+# s:分段下载，x:多线程下载，值为1~6，仅适用于http和ftp。分段下载和多线程下载可以加快下载速度，对于下载大文件特别有用
+aria2c -s 2 -x 4 http://xx.com/xx  # 4线程、2段
+
+# i:下载文件中找到的所有URIs，o:下载文件重命名，d:指定下载文件夹，c:断点续传，S:展示（不下载）.torrent, .meta4, .metalink下载内容
+# --max-download-limit:单个文件最大下载速度，--max-overall-download-limit:整体最大下载速度，数字后可以用K和M
+aria2c --max-download-limit=300K -o yy http://xx.com/xx
